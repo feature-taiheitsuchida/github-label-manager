@@ -27,4 +27,5 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting222
-      run: python github-label-manager.py ${{ github.event.inputs.name }} # echo "Hello ${{ github.event.inputs.name }}"
+      run: ls -a
+      python github-label-manager.py ${{ github.event.inputs.name }} # echo "Hello ${{ github.event.inputs.name }}"
