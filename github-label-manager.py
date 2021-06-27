@@ -1,16 +1,20 @@
 import argparse
-import requests
+import urllib.request
+import ssl
+
 
 parser = argparse.ArgumentParser(description='test description')
 parser.add_argument('--oauth_token', type=str, help="github's oauth token.")
-parser.add_argument('--owner', type=str, help="github's oauth token.")
-parser.add_argument('--repos', type=str, help="github's oauth token.")
+parser.add_argument('--repos', type=str, help="target repos. `{owner}/{repos}`.")
 args = parser.parse_args()
-print(type(args.oauth_token))
-print(args.oauth_token)
 
-header = {
+context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+headers = {
     'Authorization': args.oauth_token
 }
-url = f"https://api.github.com/repos/#{args.owner}/#{args.repos}/labels"
-requests.get(url, header)
+url = f"https://api.github.com/repos/{args.repos}/labels"
+req = urllib.request.Request(url, headers=headers, method='GET')
+print(f"url is {url}.")
+with urllib.request.urlopen(req, context=context) as res:
+    body = res.read()
+print(body)
