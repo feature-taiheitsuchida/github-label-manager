@@ -12,7 +12,7 @@ on:
         # Friendly description to be shown in the UI instead of 'name'
         description: 'github oauth_token'
         # Default value if no value is explicitly provided
-        default: ''
+        default: ${{ secrets.OAUTH_TOKEN_GITHUB_API }}
         # Input has to be provided for the workflow to run
         required: true
       repos:
