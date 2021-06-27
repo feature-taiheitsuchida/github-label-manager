@@ -10,17 +10,13 @@ on:
     inputs:
       oauth_token:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'oauth_token'
+        description: 'github oauth_token'
         # Default value if no value is explicitly provided
         default: ''
         # Input has to be provided for the workflow to run
         required: true
-      owner:
-        description: 'owner'
-        default: ''
-        required: true
       repos:
-        description: 'repos'
+        description: 'target repos. `{owner}/{repos}`.'
         default: ''
         required: true
 
@@ -32,4 +28,4 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2.3.4
     - name: step1
-      run: python github-label-manager.py --oauth_token ${{ github.event.inputs.oauth_token }} --owner ${{ github.event.inputs.owner }} --repos ${{ github.event.inputs.repos }}
+      run: python github-label-manager.py --oauth_token ${{ github.event.inputs.oauth_token }} --repos ${{ github.event.inputs.repos }}
