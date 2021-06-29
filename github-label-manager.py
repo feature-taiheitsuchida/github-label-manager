@@ -14,7 +14,7 @@ headers = {
 }
 url = f"https://api.github.com/repos/{args.repos}/labels"
 req = urllib.request.Request(url, headers=headers, method='GET')
-print(f"url is {url}.")
+print(f"url is \"{url}\".")
 with urllib.request.urlopen(req, context=context) as res:
     body = res.read()
 print(body)
